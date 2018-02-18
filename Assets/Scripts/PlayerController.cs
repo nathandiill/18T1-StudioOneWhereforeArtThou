@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 userInput;
     public float movementSpeed = 5.0f;
+    public float force;
 
 	void Start ()
     {
@@ -35,5 +36,11 @@ public class PlayerController : MonoBehaviour
         Vector2 newPosition = transform.position;
         newPosition += userInput * movementSpeed * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Call");
+            rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        }
     }
 }
